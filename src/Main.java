@@ -1,6 +1,5 @@
-import java.util.Stack;
-import java.util.Queue;
-import java.util.LinkedList;
+import java.util.Deque;
+import java.util.ArrayDeque;
 
 public class Main {
 
@@ -8,18 +7,16 @@ public class Main {
 
         String input = "level";
 
-        Stack<Character> stack = new Stack<>();
-        Queue<Character> queue = new LinkedList<>();
+        Deque<Character> deque = new ArrayDeque<>();
 
         for (char c : input.toCharArray()) {
-            stack.push(c);
-            queue.add(c);
+            deque.add(c);
         }
 
         boolean isPalindrome = true;
 
-        while (!stack.isEmpty()) {
-            if (stack.pop() != queue.remove()) {
+        while (deque.size() > 1) {
+            if (deque.removeFirst() != deque.removeLast()) {
                 isPalindrome = false;
                 break;
             }
