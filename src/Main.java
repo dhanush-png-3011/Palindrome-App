@@ -2,20 +2,37 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String input = "A man a plan a canal Panama";
+        String input = "noon";
 
-        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        PalindromeStrategy strategy = new StackStrategy();
 
-        boolean isPalindrome = true;
+        boolean result = strategy.isPalindrome(input);
 
-        for (int i = 0; i < normalized.length() / 2; i++) {
-            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
-                isPalindrome = false;
-                break;
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + result);
+    }
+}
+
+interface PalindromeStrategy {
+    boolean isPalindrome(String input);
+}
+
+class StackStrategy implements PalindromeStrategy {
+
+    public boolean isPalindrome(String input) {
+
+        java.util.Stack<Character> stack = new java.util.Stack<>();
+
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
+
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
+                return false;
             }
         }
 
-        System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + isPalindrome);
+        return true;
     }
 }
