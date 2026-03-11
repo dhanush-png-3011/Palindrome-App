@@ -1,22 +1,23 @@
 import java.sql.SQLOutput;
+import java.util.Stack;
 
 public class Main {
     public static void main(String[] args){
 
-        String input = "madam";
-        char[] chars = input.toCharArray();
+        String input = "noon";
+        Stack<Character> stack = new Stack<>();
 
-        int left = 0;
-        int right = chars.length - 1;
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
+
         boolean isPalindrome = true;
 
-        while (left < right) {
-            if (chars[left] != chars[right]) {
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
                 isPalindrome = false;
                 break;
             }
-            left++;
-            right--;
         }
 
         if (isPalindrome) {
@@ -24,5 +25,5 @@ public class Main {
         } else {
             System.out.println(input + " is not a Palindrome.");
         }
-            }
-        }
+    }
+}
