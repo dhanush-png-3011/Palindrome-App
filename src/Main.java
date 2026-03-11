@@ -1,20 +1,25 @@
-import java.sql.SQLOutput;
 import java.util.Stack;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class Main {
-    public static void main(String[] args){
 
-        String input = "noon";
+    public static void main(String[] args) {
+
+        String input = "level";
+
         Stack<Character> stack = new Stack<>();
+        Queue<Character> queue = new LinkedList<>();
 
         for (char c : input.toCharArray()) {
             stack.push(c);
+            queue.add(c);
         }
 
         boolean isPalindrome = true;
 
-        for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
+        while (!stack.isEmpty()) {
+            if (stack.pop() != queue.remove()) {
                 isPalindrome = false;
                 break;
             }
